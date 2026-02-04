@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import "../App.css";
 
 function EditTodo() {
   const { id } = useParams();
@@ -35,27 +36,39 @@ function EditTodo() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Edit Todo</h2>
+    <div className="container">
+      <div className="form-box">
+        <h2>✏️ Edit Todo</h2>
 
-      <form onSubmit={updateHandler}>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <br /><br />
+        <form onSubmit={updateHandler}>
+          <input
+            className="input"
+            type="text"
+            placeholder="Enter Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
 
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <br /><br />
+          <input
+            className="input"
+            type="text"
+            placeholder="Enter Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
-        <button type="submit">Update</button>
-      </form>
+          <button className="btn btn-primary" type="submit">
+            Update Todo
+          </button>
+
+          <Link to="/" style={{ marginLeft: "10px" }}>
+            <button className="btn" type="button">
+              Cancel
+            </button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }

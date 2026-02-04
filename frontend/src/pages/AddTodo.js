@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import "../App.css";
 
 function AddTodo() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
   const navigate = useNavigate();
 
   const submitHandler = async (e) => {
@@ -19,29 +21,39 @@ function AddTodo() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Add Todo</h2>
+    <div className="container">
+      <div className="form-box">
+        <h2>➕ Add Todo</h2>
 
-      <form onSubmit={submitHandler}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <br /><br />
+        <form onSubmit={submitHandler}>
+          <input
+            className="input"
+            type="text"
+            placeholder="Enter Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
 
-        <input
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <br /><br />
+          <input
+            className="input"
+            type="text"
+            placeholder="Enter Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
-        <button type="submit">Add</button>
-      </form>
+          <button className="btn btn-primary" type="submit">
+            Add Todo
+          </button>
+
+          <Link to="/" style={{ marginLeft: "10px" }}>
+            <button className="btn" type="button">
+              Cancel
+            </button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }
